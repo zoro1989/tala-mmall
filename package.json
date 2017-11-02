@@ -1,0 +1,19 @@
+{
+  "name": "tala-mmall",
+  "version": "1.0.0",
+  "description": "this is a mall project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoro1989/tala-mmall.git"
+  },
+  "author": "zhulin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zoro1989/tala-mmall/issues"
+  },
+  "homepage": "https://github.com/zoro1989/tala-mmall#readme"
+}
