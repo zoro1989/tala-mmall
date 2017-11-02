@@ -24,22 +24,33 @@ var getHtmlConfig = function(name, title){
 var config = {
   entry: {
     'common': ['./src/pages/common/index.js'],
-    'index': ['./src/pages/index/index.js'],
-    app: ['./src/main.js']
+    'index': ['./src/pages/index/index.js']
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'js/[name].js',
-    publicPath: '/dist'
+    publicPath: '/'
   },
   externals: {
     'jquery': 'window.jQuery'
   },
   module: {
-    loaders: [
-      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader") },
-      { test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[name].[ext]' },
-      { test: /\.string$/, loader: 'html-loader'}
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
+        test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
+        loader: 'url-loader?limit=100&name=resource/[name].[ext]'
+      },
+      {
+        test: /\.string$/,
+        loader: 'html-loader'
+      }
     ]
   },
   resolve : {
@@ -60,9 +71,7 @@ var config = {
     // 把css单独打包到文件里
     new ExtractTextPlugin("css/[name].css"),
     // html模板的处理
-    new HtmlWebpackPlugin(getHtmlConfig('index', '首页')),
-    // 热更新插件
-    new webpack.HotModuleReplacementPlugin()
+    new HtmlWebpackPlugin(getHtmlConfig('index', '首页'))
   ]
 };
 
